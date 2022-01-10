@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./css/App.css";
+import Menu from './Menu.js';
+import List from './List.js';
+import React from 'react';
 
-function App() {
+/* El componente principal lo trabajo como clase porque altera estados */
+class App extends React.Component {
+ 
+  constructor(props){
+    super(props);
+    this.state = {
+      books:[
+        {id:0, ranting:4, title:'Hary Potter', image:'libro01.jpg'},
+        {id:1, ranting:4, title:'Hary Potter', image:'libro02.jpg'},
+        {id:2, ranting:3, title:'El principito', image:'libro03.jpg'},
+        {id:3, ranting:2, title:'Otro', image:'libro04.jpg'}
+      ]
+    };
+  }
+  
+
+render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <Menu title='Amozon' info='Tienda de libros' />
+     {/*  paso el props como this.state como obj porque estoy en una clase */}
+      <List title='Lista de Libros disponibles' items={this.state.books} />
     </div>
-  );
+);
+}
+
 }
 
 export default App;
